@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="../assets/css/dashboard.css">
+
+<h1>Home | Dashboard</h1>
+
+<div id="info-wrapper">
+
+    <span class="card">
+        <div><%= totalDoubts %></div>
+        Doubts Asked
+    </span>
+
+    <span class="card">
+        <div><%= doubtsResolved %></div>
+        Doubts Resolved
+    </span>
+
+    <span class="card">
+        <div><%= doubtsEscalated %></div>
+        Doubts Escalated
+    </span>
+
+    <span class="card">
+        <div><%= Math.floor(avgDoubtResolvingTime) %> </div>
+        A.D.R.T (minutes)
+    </span>
+
+</div>
+
+<section id="ta-report-section">
+
+    <h3>TAs Reports</h3>
+
+    <% for (let taReport of taReports) { %>
+
+        <span class="ta-report">
+
+            <strong class="col" style="color: rgb(51, 111, 190);"> <%= taReport.user.name %>  :</strong>
+    
+            <span class="col">Doubts Accepted - <%= taReport.doubtsAccepted.length %> </span>
+            <span class="seperator">|</span>
+            <span class="col">Doubts Resolved - <%= taReport.doubtsResolved %></span>
+            <span class="seperator">|</span>
+            <span class="col">Doubts Escalated - <%= taReport.doubtsEscalated %></span>
+            <span class="seperator">|</span>
+            <span class="col">Avg Doubt Activity Time - <%= taReport.averageResolvingTime %></span>
+    
+        </span>
+
+    <% } %>
+
+</section>

@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="../assets/css/studentHome.css">
+
+<h3 id="raise-doubt-heading">Raise Doubt</h3>
+
+<div id="raise-doubt-wrapper">
+
+    <div id="doubt-input-form">
+
+        <form method="POST" action="/doubt/createDoubt">
+
+            <label>Title</label>
+            <input name="title" type="text" placeholder="Doubt Title" id="title">
+
+            <label>Description</label>
+            <input name="description" type="text" placeholder="Doubt Description" id="desc">
+
+            <button type="submit" id="submit-doubt">Ask Doubt</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div id="home">
+
+    <h3 id="home-heading">Home</h3>
+
+    <% for (let doubt of doubts) { %>
+        
+        <div class="doubt-container">
+
+            <div class="doubt">
+
+                <% if(doubt.isResolved) { %>
+                    <section class="resolved">R</section>
+
+                    <% if(user.id == doubt.user.id) { %>
+                        <a href="/doubt/unresolveDoubt/?doubtId=<%= doubt._id %>&taId=<%= doubt.resolvedBy._id %>" class="mark-as-unresolved" style="text-decoration: none; color: rgb(16, 118, 158);">Not Satisfied ? Mark as Unresolved</a>
+                    <% } %>
+
+                <% } %>
+
+                <span class="doubt-title"> <%= doubt.title %> </span> <br>
+                <p class="doubt-description"> <%= doubt.description %> </p>
+                <small> Asked By - <%= doubt.user.name %> <strong>on</strong> <%= String(doubt.createdAt).substring(0, 21) %>  </small>
+    
+                <div class="answer">
+                    <% if(doubt.isResolved) { %>
+                        <br>
+                        <strong>Answer - </strong><%= doubt.resolvedAnswer %> <br> <br>
+                        Answered By - <%= doubt.resolvedBy.name %> on <%= String(doubt.updatedAt).substring(0, 21) %> 
+                    <% } %> 
+                </div>
+
+            </div>
+
+            <div class="comment-container">
+
+                <small><%= doubt.comments.length %>  Comments</small>
+                <% for (let comment of doubt.comments) { %>
+
+                    <p class="comment">
+                        <span style="font-weight: 500; color: rgb(24, 123, 180); font-size: 14px;"><%= comment.user.name %> - </span>
+                        <span><%= comment.comment %></span>
+                    </p>
+                    
+                <% } %> 
+
+            </div>
+
+            <div class="input-comment">
+
+                <form method="POST" action="/doubt/createComment">
+
+                    <input name="comment" type="text" placeholder="Add Comment" class="c-input">
+                    <input name="user" type="hidden" value="<%= user._id %>">
+                    <input name="doubt" type="hidden" value="<%= doubt._id %>">
+                    <button type="submit" class="c-btn">Comment</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    <% } %> 
+
+</div>

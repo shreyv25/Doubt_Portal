@@ -1,0 +1,50 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+    margin-left: 24.5%;
+    border: 1px solid rgb(212, 208, 208);
+    display: inline-block;
+    padding: 1%;
+    color: grey;
+    font-weight: 500;
+}
+
+.pending-doubt-wrapper{
+    height: 60px;
+    width: 50%;
+    border: 1px solid rgb(228, 226, 226);
+    margin: auto;
+    position: relative;
+    padding: 0.4%;
+}
+
+.pending-doubt-wrapper .pending-doubt-title{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(36, 131, 168);
+}
+
+.pending-doubt-wrapper .pending-doubt-time{
+    display: block;
+    margin-top: 1%;
+}
+
+.pending-doubt-wrapper a{
+    position: absolute;
+    right: 3%;
+    top: 24%;
+    height: 30px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    background-color: rgb(67, 171, 219);
+    text-align: center;
+    padding-top: 1%;
+}
+
+.pending-doubt-wrapper a:hover{
+    background-color: rgb(33, 104, 197);
+}
